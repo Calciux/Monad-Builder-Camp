@@ -109,3 +109,9 @@ app.get("/premium", mppx.charge(), (c) => c.json({ message: "Premium content" })
 - 领取 Monad Testnet MON（Gas）
 - 初始化 Next.js 项目
 - 安装 @x402/* + @monad-crypto/mpp + mppx
+
+---
+
+## 场景分析：Onchain AI Agent 微任务市场
+
+一次 Agent 微任务需 6 步链上交互（发布→报价→托管→提交→验收→结算），百个 Agent 日均六千笔交易。Ethereum L1 上单任务 Gas 成本 $6-30，而任务本身仅值 $0.10——微任务经济学不成立，Agent 市场退化为人类外包的链上版。Monad 改变的不是速度而是经济可行性：0.4s 出块使完整任务周期压缩至 3 秒，Gas 近零使 $0.01 任务可盈利，Agent 经济从人类尺度切换到机器尺度。更关键的是 Monad 已为此构建专用基础设施——x402 协议让 Agent 签名即支付、Facilitator 代付 Gas，MPP SDK 的 Pull 模式让 Agent 不需持有 MON 即可参与。链上必要性源于三点：互不认识的 Agent 需要智能合约托管资金（非信任第三方无法替代），交付历史需链上不可篡改作为 Agent 声誉，以及多 Agent 工作流需同链原子结算实现 composability。数据库能记账，但不能做一个双方都不信任的 executor。
